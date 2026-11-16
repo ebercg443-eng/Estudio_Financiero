@@ -2,6 +2,7 @@ name: Compilar APK Flet
 
 on:
   push:
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -18,16 +19,6 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Configurar Flutter SDK
-        uses: subosito/flutter-action@v2
-        with:
-          flutter-version: '3.29.0'
-          channel: 'stable'
-          cache: true
-
-      - name: Verificar instalación de Flutter
-        run: flutter --version
-
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
@@ -38,7 +29,7 @@ jobs:
           pip install --upgrade pip
           pip install flet
 
-      - name: Compilar APK de Flet
+      - name: Compilar APK con Flet CLI
         run: flet build apk --verbose
 
       - name: Subir APK generado
