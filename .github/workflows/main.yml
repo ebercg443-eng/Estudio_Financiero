@@ -13,6 +13,18 @@ jobs:
       - name: Descargar código del repositorio
         uses: actions/checkout@v4
 
+      - name: Configurar Java 17 (Requerido por Android SDK)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Configurar Flutter SDK
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.24.0'
+          channel: 'stable'
+
       - name: Configurar Python
         uses: actions/setup-python@v5
         with:
@@ -23,14 +35,9 @@ jobs:
           pip install --upgrade pip
           pip install flet
 
-      - name: Configurar Flutter y Java para Android
-        uses: subosito/flutter-action@v2
-        with:
-          channel: "stable"
-
       - name: Compilar APK
-        run: flet build apk
-        
+        run: flet build apk --verbose
+
       - name: Subir APK generado
         uses: actions/upload-artifact@v4
         with:
