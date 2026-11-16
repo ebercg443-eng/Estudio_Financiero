@@ -1,0 +1,10 @@
+[project]
+name = "Discapacidad visual"
+version = "1.0.0"
+description = "Simulador de Evaluación y Desarrollo de Proyectos"
+dependencies = ["flet"]
+
+[tool.flet]
+org = "Ingeniería Electronica"
+product = "Business Judgment"
+company = "TecNM"
